@@ -7,6 +7,7 @@ import {
   Animated,
   FlatList,
   TouchableOpacity,
+  SafeAreaView
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -53,14 +54,13 @@ function ProductPage({ navigation }) {
   );
 
   return (
-    <View style={{}}>
-      <Text>Home screen</Text>
+    <SafeAreaView>
       <FlatList
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
