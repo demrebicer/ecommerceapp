@@ -143,7 +143,7 @@ const Stack = createStackNavigator();
 
 function MyStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator  screenOptions={{animationEnabled: false}}>
 
       <Stack.Screen name="index" component={indexPage} />
 
