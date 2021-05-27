@@ -17,8 +17,8 @@ import { ListItem, Avatar } from 'react-native-elements';
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 //PAGES
-import CategoriesPage from './screens/categories'
 import productsPage from './screens/products'
+import CategoriesPage from './screens/categories'
 import ordersPage from './screens/orders'
 
 import { BottomNavigation, Text, Appbar } from 'react-native-paper';

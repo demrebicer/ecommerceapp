@@ -12,7 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
-import { Appbar } from 'react-native-paper';
+import { Appbar,List,Colors,Divider,IconButton } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
 
@@ -43,20 +43,39 @@ function CategoriesPage({ navigation }) {
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => (
-    <ListItem bottomDivider>
-      <ListItem.Content style={{ flexDirection: 'row' }}>
-        <Text style={{ flex: 4 }}>{item.name.value == null? <Text>{item.name}</Text>: <Text>{item.name.value}</Text> }</Text>
+    // <ListItem bottomDivider>
+    //   <ListItem.Content style={{ flexDirection: 'row' }}>
+    //     <Text style={{ flex: 4 }}>{item.name.value == null? <Text>{item.name}</Text>: <Text>{item.name.value}</Text> }</Text>
         
-        <TouchableOpacity
-          style={{ flex: 1, backgroundColor: 'red' }}
-          onPress={() => {
-            console.log('item.id');
-            deleteProduct(item.id);
-          }}>
-          <Text>SİL</Text>
-        </TouchableOpacity>
-      </ListItem.Content>
-    </ListItem>
+    //     <TouchableOpacity
+    //       style={{ flex: 1, backgroundColor: 'red' }}
+    //       onPress={() => {
+    //         console.log('item.id');
+    //         deleteProduct(item.id);
+    //       }}>
+    //       <Text>SİL</Text>
+    //     </TouchableOpacity>
+    //   </ListItem.Content>
+    // </ListItem>
+        <List.Item
+      title={item.name.value == null ? item.name : item.name.value} 
+      // description="Item description"
+      description={item.description}
+      left={props => <List.Icon color={Colors.grey600} icon="folder" />}
+      right={props =>   <IconButton
+                          icon="delete"
+                          color={Colors.red700}
+                          size={20}
+                          onPress={() => {
+                            console.log(item.name)
+                            deleteProduct(item.name)}}
+                        />
+                        }
+      style={{
+        borderBottomColor: 'grey',
+        borderBottomWidth: 0.3,
+      }}
+    />
   );
 
   return (
@@ -69,7 +88,7 @@ function CategoriesPage({ navigation }) {
       </Appbar.Header>
 
 
-            <FlatList
+      <FlatList
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
