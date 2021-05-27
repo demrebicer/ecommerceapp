@@ -54,9 +54,18 @@ function ProductPage({ navigation }) {
                             onPress={() => {
                               console.log(item.name)
                               deleteProduct(item.name)}}
-                          />}
+        
+                          />
+                          
+                          }
+                   style={{
+    borderBottomColor: 'black',
+    borderBottomWidth: 0.5,
+  }}          
         
       />
+      
+        
   );
 
   return (
