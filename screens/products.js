@@ -12,11 +12,9 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
-import { ListItem, Avatar } from 'react-native-elements';
-import { Appbar } from 'react-native-paper';
+// import { ListItem, Avatar } from 'react-native-elements';
+import { Appbar,List,Colors,Divider,IconButton } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-
-
 
 
 function ProductPage({ navigation }) {
@@ -44,19 +42,21 @@ function ProductPage({ navigation }) {
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => (
-    <ListItem bottomDivider>
-      <ListItem.Content style={{ flexDirection: 'row' }}>
-        <Text style={{ flex: 4 }}>{item.name}</Text>
-        <TouchableOpacity
-          style={{ flex: 1, backgroundColor: 'red' }}
-          onPress={() => {
-            console.log(item.name);
-            deleteProduct(item.name);
-          }}>
-          <Text>SİL</Text>
-        </TouchableOpacity>
-      </ListItem.Content>
-    </ListItem>
+      <List.Item
+        title={item.name}
+        // description="Item description"
+        left={props => <List.Icon color={Colors.grey600} icon="shopping" />}
+        // right={props => <List.Icon color={Colors.red700} icon="delete" />}
+        right={props =>   <IconButton
+                            icon="delete"
+                            color={Colors.red700}
+                            size={20}
+                            onPress={() => {
+                              console.log(item.name)
+                              deleteProduct(item.name)}}
+                          />}
+        
+      />
   );
 
   return (
@@ -69,7 +69,7 @@ function ProductPage({ navigation }) {
       </Appbar.Header>
 
 
-            <FlatList
+      <FlatList
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
