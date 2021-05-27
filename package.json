@@ -24,13 +24,13 @@
     "react-native-reanimated": "~1.13.0",
     "@react-navigation/drawer": "^5.9.0",
     "@react-navigation/native": "^5.7.3",
+    "react-native-vector-icons": "*",
     "react-native-gesture-handler": "~1.8.0",
     "@react-navigation/bottom-tabs": "^5.8.0",
     "react-native-safe-area-context": "3.1.9",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/material-top-tabs": "^5.2.16",
-    "@react-navigation/material-bottom-tabs": "^5.2.16",
-    "react-native-vector-icons": "8.1.0"
+    "@react-navigation/material-bottom-tabs": "^5.2.16"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

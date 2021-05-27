@@ -12,6 +12,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
+import { Appbar } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+
+
+
+
 function CategoriesPage({ navigation }) {
   const [data, setdata] = useState([]);
   function deleteProduct(id) {
@@ -54,13 +60,22 @@ function CategoriesPage({ navigation }) {
   );
 
   return (
-    <SafeAreaView>
-      <FlatList
+    <View>
+      <Appbar.Header>
+        {/* <Appbar.BackAction onPress={_goBack} /> */}
+        <Appbar.Content title="Categories" />
+        <Appbar.Action icon="magnify" onPress={console.log()} />
+        <Appbar.Action icon="dots-vertical" onPress={console.log()} />
+      </Appbar.Header>
+
+
+            <FlatList
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
       />
-    </SafeAreaView>
+
+    </View>
   );
 }
 export default CategoriesPage;
