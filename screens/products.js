@@ -20,8 +20,8 @@ import { StyleSheet } from 'react-native';
 function ProductPage({ navigation }) {
   const [data, setdata] = useState([]);
   const currency=" $";
-  function deleteProduct(name) {
-    const newList = data.filter((data) => data.name !== name);
+  function deleteProduct(id) {
+    const newList = data.filter((data) => data.id !== id);
 
     setdata(newList);
   }
@@ -53,8 +53,8 @@ function ProductPage({ navigation }) {
                             color={Colors.red700}
                             size={20}
                             onPress={() => {
-                              console.log(item.name)
-                              deleteProduct(item.name)}}
+                              console.log(item.id)
+                              deleteProduct(item.id)}}
                           />
                           }
         style={{

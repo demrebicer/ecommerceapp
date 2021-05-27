@@ -20,7 +20,7 @@ import { StyleSheet } from 'react-native';
 
 function CategoriesPage({ navigation }) {
   const [data, setdata] = useState([]);
-  function deleteProduct(id) {
+  function deleteCategory(id) {
     const newList = data.filter((data) => data.id !== id);
 
     setdata(newList);
@@ -43,20 +43,6 @@ function CategoriesPage({ navigation }) {
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => (
-    // <ListItem bottomDivider>
-    //   <ListItem.Content style={{ flexDirection: 'row' }}>
-    //     <Text style={{ flex: 4 }}>{item.name.value == null? <Text>{item.name}</Text>: <Text>{item.name.value}</Text> }</Text>
-        
-    //     <TouchableOpacity
-    //       style={{ flex: 1, backgroundColor: 'red' }}
-    //       onPress={() => {
-    //         console.log('item.id');
-    //         deleteProduct(item.id);
-    //       }}>
-    //       <Text>SİL</Text>
-    //     </TouchableOpacity>
-    //   </ListItem.Content>
-    // </ListItem>
         <List.Item
       title={item.name.value == null ? item.name : item.name.value} 
       // description="Item description"
@@ -67,8 +53,8 @@ function CategoriesPage({ navigation }) {
                           color={Colors.red700}
                           size={20}
                           onPress={() => {
-                            console.log(item.name)
-                            deleteProduct(item.name)}}
+                            console.log(item.id)
+                            deleteCategory(item.id)}}
                         />
                         }
       style={{
