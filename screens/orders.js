@@ -17,6 +17,10 @@ import { StyleSheet } from 'react-native';
 
 
 
+function comp(a, b) {
+    return new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime();
+}
+
 
 function ordersPage({ navigation }) {
   const [data, setdata] = useState([]);
@@ -28,6 +32,7 @@ function ordersPage({ navigation }) {
 
   useEffect(() => {
     if (data.length == 0) {
+      
       axios
         .get('https://northwind.vercel.app/api/orders')
         .then((response) => {
@@ -37,9 +42,10 @@ function ordersPage({ navigation }) {
         .catch((error) => {
           console.log(error);
         });
+        
     }
   });
-
+  data.sort(comp);
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => (
