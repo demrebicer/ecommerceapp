@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import {
   View,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
   Button,
-  Text,
+  Image,
   Animated,
   FlatList,
   TouchableOpacity,
@@ -11,42 +14,60 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+//PAGES
 import CategoriesPage from './screens/categories'
 import productsPage from './screens/products'
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Tab = createBottomTabNavigator();
+import { BottomNavigation, Text, Appbar } from 'react-native-paper';
 
-const Stack = createStackNavigator();
+const _goBack = () => console.log('Went back');
 
-export default function App() {
+const _handleSearch = () => console.log('Searching');
+
+const _handleMore = () => console.log('Shown more');
+
+const MyComponent = () => {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'products', title: 'Products', icon: 'cart' },
+    { key: 'categories', title: 'Categories', icon: 'folder' },
+    { key: 'orders', title: 'Orders', icon: 'history' },
+  ]);
+
+
+  const renderScene = BottomNavigation.SceneMap({
+    products: productsPage,
+    categories: CategoriesPage,
+    orders: productsPage,
+  });
+
   return (
-      <NavigationContainer>
-    <Tab.Navigator>
-      <Tab.Screen name="Products" component={productsPage} 
-      options={{
-          tabBarLabel: 'Products',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="cart" color={color} size={size} />
-          ),
-        }}/>
-      <Tab.Screen name="Categories" component={CategoriesPage} 
-      options={{
-          tabBarLabel: 'Categories',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="folder" color={color} size={size} />
-          ),
-        }}/>
-      <Tab.Screen name="Orders" component={productsPage} 
-      options={{
-          tabBarLabel: 'Orders',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="history" color={color} size={size} />
-          ),
-        }}/>
-    </Tab.Navigator>
-      </NavigationContainer>
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+    />
+
   );
-}
+};
+
+export default MyComponent;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
+  },
+});
