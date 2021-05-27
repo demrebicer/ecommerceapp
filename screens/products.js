@@ -19,6 +19,7 @@ import { StyleSheet } from 'react-native';
 
 function ProductPage({ navigation }) {
   const [data, setdata] = useState([]);
+  const currency=" $";
   function deleteProduct(name) {
     const newList = data.filter((data) => data.name !== name);
 
@@ -45,8 +46,8 @@ function ProductPage({ navigation }) {
       <List.Item
         title={item.name}
         // description="Item description"
+        description={currency+item.unitPrice}
         left={props => <List.Icon color={Colors.grey600} icon="shopping" />}
-        // right={props => <List.Icon color={Colors.red700} icon="delete" />}
         right={props =>   <IconButton
                             icon="delete"
                             color={Colors.red700}
@@ -54,8 +55,12 @@ function ProductPage({ navigation }) {
                             onPress={() => {
                               console.log(item.name)
                               deleteProduct(item.name)}}
-                          />}
-        
+                          />
+                          }
+        style={{
+          borderBottomColor: 'grey',
+          borderBottomWidth: 0.3,
+        }}
       />
   );
 
