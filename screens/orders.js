@@ -82,7 +82,7 @@ function ordersPage({ navigation }) {
         <DataTable.Title style={{flex:1.5,justifyContent:"center"}} numeric>Customer ID</DataTable.Title>
       </DataTable.Header>
 
-      <FlatList
+      <FlatList style={{marginBottom:150}}
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}

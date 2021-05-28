@@ -79,7 +79,7 @@ function ProductPage({ navigation }) {
       </Appbar.Header>
 
 
-      <FlatList
+      <FlatList style={{marginBottom:100}}
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
