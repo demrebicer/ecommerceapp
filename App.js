@@ -21,6 +21,7 @@ import productsPage from './screens/products'
 import CategoriesPage from './screens/categories'
 import ordersPage from './screens/orders'
 import productDetail from './screens/productDetail'
+import addCategoryPage from './screens/addCategory'
 
 import { BottomNavigation, Text, Appbar } from 'react-native-paper';
 
@@ -40,7 +41,7 @@ const MyComponent = () => {
 
 
   const renderScene = BottomNavigation.SceneMap({
-    products: productDetail,
+    products: productsPage,
     categories: CategoriesPage,
     orders: ordersPage,
   });

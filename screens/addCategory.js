@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import {
   View,
-  Button,
   Text,
   Animated,
   FlatList,
   TouchableOpacity,
-  SafeAreaView,TextInput 
+  SafeAreaView,
+  Alert
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
-import { Appbar,List,Colors,Divider,IconButton } from 'react-native-paper';
+import { Appbar,List,Colors,Divider,IconButton,TextInput,Button,Dialog } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
  import { Formik } from 'formik';
 
@@ -20,6 +20,9 @@ import { StyleSheet } from 'react-native';
 
 function addCategoriesPage({ navigation }) {
   const [data, setdata] = useState([]);
+  const [categoryname, setcategoryname] = React.useState('');
+  const [categorydetail, setcategorydetail] = React.useState('');
+
   function deleteCategory(id) {
     const newList = data.filter((data) => data.id !== id);
 
@@ -32,46 +35,40 @@ function addCategoriesPage({ navigation }) {
   
 
   return (
-      <Formik
-      style = {{flexDirection:"column"}}
-     initialValues={{ categoryName: '',categoryDetail:'' }}
-     onSubmit={values => console.log(values)}
-   >
-     {({ handleChange, handleBlur, handleSubmit, values }) => (
-       <View style={{padding:20,flexDirection:"column",flex:1}}>
-          <Text>PRODUCT NAME</Text>
-           <TextInput
-            style={{backgroundColor:"white",flex:1,   
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    borderRadius: 15,
+    <View>
+    <Appbar.Header>
+      {/* <Appbar.BackAction onPress={_goBack} /> */}
+      <Appbar.Content title="Add a new Category" />
 
-  }}
-           onChangeText={handleChange('product name')}
-           onBlur={handleBlur('product name')}
-           value={values.email}
-         />
-        <Text>PRODUCT DETAIL</Text>
-          <TextInput
-          style={{backgroundColor:"gray",flex:1,    
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    borderRadius: 15,
-    margin: 15,
-}}
-           onChangeText={handleChange('email')}
-           onBlur={handleBlur('email')}
-           value={values.email}
-         />
+    </Appbar.Header>
+    
+    <TextInput
+      label="Category Name"
+      mode="outlined"
+      value={categoryname}
+      onChangeText={text => setcategoryname(text)}
+      style={{marginLeft:30,marginRight:30,marginTop:30,marginBottom:15}}
+      outlineColor={Colors.purple400}
+    />
+    <TextInput
+      label="Category Detail"
+      mode="outlined"
+      value={categorydetail}
+      onChangeText={text => setcategorydetail(text)}
+      style={{marginLeft:30,marginRight:30}}
+      outlineColor={Colors.purple400}
+    />
+    <Button icon="plus" mode="contained" style={{marginLeft:90,marginRight:90,marginTop:30,marginBottom:15}} onPress={() => {
+      console.log(categoryname,categorydetail)
+      if(categoryname==""||categorydetail==""){
+        console.log("dasda")
+        Alert.alert("Attention","Please fill the blanks")
+      }
+    }}>
+    Add a new Category
+    </Button>
 
-       
-         <TouchableOpacity style={{backgroundColor:"red",flex:1,    padding: 10,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    borderRadius: 15,
-    margin: 5}}><Text>SUBMIT</Text></TouchableOpacity>
- 
-       </View>
-     )}
-   </Formik>
-
+    </View>
   );
 }
 export default addCategoriesPage;
