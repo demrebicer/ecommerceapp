@@ -69,8 +69,7 @@ function ProductPage({ navigation }) {
       <Appbar.Header>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Products" />
-        <Appbar.Action icon="magnify" onPress={console.log()} />
-        <Appbar.Action icon="dots-vertical" onPress={console.log()} />
+
       </Appbar.Header>
 
 

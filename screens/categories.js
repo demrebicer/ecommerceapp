@@ -69,8 +69,7 @@ function CategoriesPage({ navigation }) {
       <Appbar.Header>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Categories" />
-        <Appbar.Action icon="magnify" onPress={console.log()} />
-        <Appbar.Action icon="dots-vertical" onPress={console.log()} />
+        <Appbar.Action icon="plus-box" onPress={console.log()} />
       </Appbar.Header>
 
 

@@ -73,12 +73,10 @@ function ordersPage({ navigation }) {
       <Appbar.Header>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Orders" />
-        <Appbar.Action icon="magnify" onPress={console.log()} />
-        <Appbar.Action icon="dots-vertical" onPress={console.log()} />
       </Appbar.Header>
 
       <DataTable.Header style={{flexDirection:"row"}}>
-        <DataTable.Title style={{flex:3,justifyContent:"left"}}   >Product Name</DataTable.Title>
+        <DataTable.Title style={{flex:3,justifyContent:"left"}}   >Ship Name</DataTable.Title>
         <DataTable.Title style={{flex:2,justifyContent:"center"}}   numeric>Order Date</DataTable.Title>
         <DataTable.Title style={{flex:1.5,justifyContent:"center"}} numeric>Order ID</DataTable.Title>
         <DataTable.Title style={{flex:1.5,justifyContent:"center"}} numeric>Customer ID</DataTable.Title>
