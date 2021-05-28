@@ -15,11 +15,13 @@ import axios from 'axios';
 // import { ListItem, Avatar } from 'react-native-elements';
 import { Appbar,List,Colors,Divider,IconButton } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-
-
-
+import { useNavigation } from '@react-navigation/native';
+import ProductDetailPage from './productDetail';
+import HomeScreen from '../App';
 
 function ProductPage({ navigation }) {
+    const nav = useNavigation(); 
+
   const [data, setdata] = useState([]);
   const currency=" $";
   function deleteProduct(id) {
@@ -29,6 +31,7 @@ function ProductPage({ navigation }) {
   }
 
   useEffect(() => {
+    
     if (data.length == 0) {
       axios
         .get('https://northwind.vercel.app/api/products')
@@ -64,7 +67,8 @@ function ProductPage({ navigation }) {
           borderBottomWidth: 0.3,
         }}
         onPress={()=>{
-          console.log("test")
+         console.log("bastın");
+         nav.navigate('productDetailPage',{'product':item})
 
           }}
       />
@@ -99,3 +103,4 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 });
+

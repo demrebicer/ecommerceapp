@@ -15,9 +15,11 @@ import axios from 'axios';
 // import { ListItem, Avatar } from 'react-native-elements';
 import { Appbar,List,Colors,Divider,IconButton,DataTable } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
+function ProductDetailPage({ route,navigation}) {
 
-function ProductPage({ navigation }) {
+    const nav = useNavigation(); 
   const [data, setdata] = useState([]);
   const currency=" $";
   function deleteProduct(id) {
@@ -25,27 +27,12 @@ function ProductPage({ navigation }) {
 
     setdata(newList);
   }
-
-  useEffect(() => {
-    if (data.length == 0) {
-      axios
-        .get('https://northwind.vercel.app/api/products/5')
-        .then((response) => {
-          setdata(response.data);
-          console.log(data, 'aaaa');
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  });
-
-
   return (
     <View>
       <Appbar.Header>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
-        <Appbar.Content title={data.name==null?"Product Detail":data.name} />
+              <Appbar.BackAction onPress={() => {nav.goBack()}} />
+        <Appbar.Content title={route.params.product.name} />
 
       </Appbar.Header>
 
@@ -65,7 +52,7 @@ function ProductPage({ navigation }) {
   );
 }
 
-export default ProductPage;
+export default ProductDetailPage;
 
 const styles = StyleSheet.create({
   bottom: {

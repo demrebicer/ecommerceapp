@@ -20,7 +20,7 @@ import { ListItem, Avatar } from 'react-native-elements';
 import productsPage from './screens/products'
 import CategoriesPage from './screens/categories'
 import ordersPage from './screens/orders'
-import productDetail from './screens/productDetail'
+import productDetailPage from './screens/productDetail'
 import addCategoryPage from './screens/addCategory'
 import { useNavigation } from '@react-navigation/native';
 import { BottomNavigation, Text, Appbar } from 'react-native-paper';
@@ -83,6 +83,12 @@ function MyStack() {
         options={{headerShown: false, animationEnabled: false}}
         name="addCategoryPage"
         component={addCategoryPage}
+      />
+       <Stack.Screen
+        options={{headerShown: false, animationEnabled: false}}
+        name="productDetailPage"
+        component={productDetailPage}
+        initialParams={{'product':{}}}
       />
     </Stack.Navigator>
   );
