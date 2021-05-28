@@ -12,7 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
-import { Appbar } from 'react-native-paper';
+import { Appbar,List,Colors,Divider,IconButton,DataTable } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
 
@@ -43,22 +43,29 @@ function ordersPage({ navigation }) {
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => (
-    <ListItem bottomDivider>
-      <ListItem.Content style={{ flexDirection: 'row' }}>
-        <Text style={{ flex: 4 }}>{item.shipName}</Text>
-        <Text style={{ flex: 4 }}>{item.orderDate}</Text>
-         <Text style={{ flex: 4 }}>{item.id}</Text>
-          <Text style={{ flex: 4 }}>{item.customerId}</Text>
-        <TouchableOpacity
-          style={{ flex: 1, backgroundColor: 'red' }}
-          onPress={() => {
-            console.log('item.id');
-            deleteProduct(item.id);
-          }}>
-          <Text>SİL</Text>
-        </TouchableOpacity>
-      </ListItem.Content>
-    </ListItem>
+    // <ListItem bottomDivider>
+    //   <ListItem.Content style={{ flexDirection: 'row' }}>
+    //     <Text style={{ flex: 4 }}>{item.shipName}</Text>
+    //     <Text style={{ flex: 4 }}>{item.orderDate}</Text>
+    //      <Text style={{ flex: 4 }}>{item.id}</Text>
+    //       <Text style={{ flex: 4 }}>{item.customerId}</Text>
+    //     <TouchableOpacity
+    //       style={{ flex: 1, backgroundColor: 'red' }}
+    //       onPress={() => {
+    //         console.log('item.id');
+    //         deleteProduct(item.id);
+    //       }}>
+    //       <Text>SİL</Text>
+    //     </TouchableOpacity>
+    //   </ListItem.Content>
+    // </ListItem>
+
+    <DataTable.Row style={{ flexDirection: 'row' }}>
+      <DataTable.Cell> <Text style={{flexShrink: 1}}>{item.shipName}</Text> </DataTable.Cell>
+      <DataTable.Cell numeric >{item.orderDate}</DataTable.Cell>
+      <DataTable.Cell numeric >{item.id}</DataTable.Cell>
+      <DataTable.Cell numeric >{item.customerId}</DataTable.Cell>
+    </DataTable.Row>
   );
 
   return (
@@ -70,8 +77,14 @@ function ordersPage({ navigation }) {
         <Appbar.Action icon="dots-vertical" onPress={console.log()} />
       </Appbar.Header>
 
+      <DataTable.Header>
+        <DataTable.Title>Product Name</DataTable.Title>
+        <DataTable.Title numeric>Order Date</DataTable.Title>
+        <DataTable.Title numeric>Order ID</DataTable.Title>
+        <DataTable.Title numeric>Customer ID</DataTable.Title>
+      </DataTable.Header>
 
-            <FlatList
+      <FlatList
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
