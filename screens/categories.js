@@ -46,11 +46,11 @@ function CategoriesPage({ navigation }) {
       title={item.name.value == null ? item.name : item.name.value} 
       // description="Item description"
       description={item.description}
-      left={props => <List.Icon color={Colors.grey600} icon="folder" />}
+      left={props => <List.Icon color={Colors.grey600} size={28} icon="folder" />}
       right={props =>   <IconButton
                           icon="delete"
                           color={Colors.red700}
-                          size={20}
+                          size={28}
                           onPress={() => {
                             console.log(item.id)
                             deleteCategory(item.id)}}
