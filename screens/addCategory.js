@@ -15,10 +15,12 @@ import { ListItem, Avatar } from 'react-native-elements';
 import { Appbar,List,Colors,Divider,IconButton,TextInput,Button,Dialog } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
  import { Formik } from 'formik';
+ import { useNavigation } from '@react-navigation/native';
 
 
 
 function addCategoriesPage({ navigation }) {
+  const nav = useNavigation(); 
   const [data, setdata] = useState([]);
   const [categoryname, setcategoryname] = React.useState('');
   const [categorydetail, setcategorydetail] = React.useState('');
@@ -37,8 +39,9 @@ function addCategoriesPage({ navigation }) {
   return (
     <View>
     <Appbar.Header>
-      {/* <Appbar.BackAction onPress={_goBack} /> */}
+      <Appbar.BackAction onPress={() => {nav.goBack()}} />
       <Appbar.Content title="Add a new Category" />
+      
 
     </Appbar.Header>
     

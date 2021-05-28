@@ -78,7 +78,8 @@ function MyStack() {
         name="Updates"
         component={MyComponent}
       />
- <Stack.Screen
+      
+      <Stack.Screen
         options={{headerShown: false, animationEnabled: false}}
         name="addCategoryPage"
         component={addCategoryPage}
