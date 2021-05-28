@@ -61,10 +61,10 @@ function ordersPage({ navigation }) {
     // </ListItem>
 
     <DataTable.Row style={{ flexDirection: 'row' }}>
-      <DataTable.Cell> <Text style={{flexShrink: 1}}>{item.shipName}</Text> </DataTable.Cell>
-      <DataTable.Cell numeric >{item.orderDate}</DataTable.Cell>
-      <DataTable.Cell numeric >{item.id}</DataTable.Cell>
-      <DataTable.Cell numeric >{item.customerId}</DataTable.Cell>
+      <DataTable.Cell style={{flex:3,justifyContent:"left"}}      > <Text style={{flexShrink: 1}}>{item.shipName}</Text> </DataTable.Cell>
+      <DataTable.Cell style={{flex:2,justifyContent:"center"}}    numeric >{item.orderDate.substring(0,10)}</DataTable.Cell>
+      <DataTable.Cell style={{flex:1.5,justifyContent:"center"}} numeric >{item.id}</DataTable.Cell>
+      <DataTable.Cell style={{flex:1.5,justifyContent:"center"}}   numeric >{item.customerId}</DataTable.Cell>
     </DataTable.Row>
   );
 
@@ -77,11 +77,11 @@ function ordersPage({ navigation }) {
         <Appbar.Action icon="dots-vertical" onPress={console.log()} />
       </Appbar.Header>
 
-      <DataTable.Header>
-        <DataTable.Title>Product Name</DataTable.Title>
-        <DataTable.Title numeric>Order Date</DataTable.Title>
-        <DataTable.Title numeric>Order ID</DataTable.Title>
-        <DataTable.Title numeric>Customer ID</DataTable.Title>
+      <DataTable.Header style={{flexDirection:"row"}}>
+        <DataTable.Title style={{flex:3,justifyContent:"left"}}   >Product Name</DataTable.Title>
+        <DataTable.Title style={{flex:2,justifyContent:"center"}}   numeric>Order Date</DataTable.Title>
+        <DataTable.Title style={{flex:1.5,justifyContent:"center"}} numeric>Order ID</DataTable.Title>
+        <DataTable.Title style={{flex:1.5,justifyContent:"center"}} numeric>Customer ID</DataTable.Title>
       </DataTable.Header>
 
       <FlatList
