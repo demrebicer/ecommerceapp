@@ -39,7 +39,7 @@ const MyComponent = () => {
 
 
   const renderScene = BottomNavigation.SceneMap({
-    products: ordersPage,
+    products: productsPage,
     categories: CategoriesPage,
     orders: ordersPage,
   });
