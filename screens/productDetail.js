@@ -27,6 +27,9 @@ function ProductDetailPage({ route,navigation}) {
 
     setdata(newList);
   }
+
+
+
   return (
     <View>
       <Appbar.Header>
@@ -36,15 +39,19 @@ function ProductDetailPage({ route,navigation}) {
 
       </Appbar.Header>
 
-      <View style={{flexDirection:"row"}}>
+      <View style={{flexDirection:"column"}}>
+ 
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>id: </Text><Text style={             {flex:1}}>{route.params.product.id}</Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>supplierId: </Text><Text style={{     flex:1}}>{route.params.product.supplierId} </Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>categoryId: </Text><Text style={{     flex:1}}>{route.params.product.categoryId} </Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>quantityPerUnit: </Text><Text style={{flex:1}}>{route.params.product.quantityPerUnit}</Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>unitPrice: </Text><Text style={{      flex:1}}>{route.params.product.unitPrice} </Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>unitsInStock: </Text><Text style={{   flex:1}}>{route.params.product.unitsInStock} </Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>unitsOnOrder: </Text><Text style={{   flex:1}}>{route.params.product.unitsOnOrder}</Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>reorderLevel: </Text><Text style={{   flex:1}}>{route.params.product.reorderLevel} </Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>discontinued: </Text><Text style={{   flex:1}}>{route.params.product.discontinued}</Text></View>
+      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>name: </Text><Text style={{           flex:1}}>{route.params.product.name} </Text></View>
 
-      <View>
-      <Text>Product Name: </Text>
-      </View>
-
-      <View>
-      <Text>Demre</Text>
-      </View>
 
       </View>
 
