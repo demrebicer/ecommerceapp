@@ -20,6 +20,7 @@ import { ListItem, Avatar } from 'react-native-elements';
 import productsPage from './screens/products'
 import CategoriesPage from './screens/categories'
 import ordersPage from './screens/orders'
+import productDetail from './screens/productDetail'
 
 import { BottomNavigation, Text, Appbar } from 'react-native-paper';
 
@@ -39,7 +40,7 @@ const MyComponent = () => {
 
 
   const renderScene = BottomNavigation.SceneMap({
-    products: productsPage,
+    products: productDetail,
     categories: CategoriesPage,
     orders: ordersPage,
   });

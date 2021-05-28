@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import {
   View,
-  Button,
   Text,
   Animated,
   FlatList,
+  Button,
   TouchableOpacity,
   SafeAreaView
 } from 'react-native';
@@ -13,10 +13,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 // import { ListItem, Avatar } from 'react-native-elements';
-import { Appbar,List,Colors,Divider,IconButton } from 'react-native-paper';
+import { Appbar,List,Colors,Divider,IconButton,DataTable } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-
-
 
 
 function ProductPage({ navigation }) {
@@ -31,7 +29,7 @@ function ProductPage({ navigation }) {
   useEffect(() => {
     if (data.length == 0) {
       axios
-        .get('https://northwind.vercel.app/api/products')
+        .get('https://northwind.vercel.app/api/products/5')
         .then((response) => {
           setdata(response.data);
           console.log(data, 'aaaa');
@@ -42,48 +40,26 @@ function ProductPage({ navigation }) {
     }
   });
 
-  keyExtractor = (item, index) => index.toString();
-
-  renderItem = ({ item }) => (
-      <List.Item
-        title={item.name}
-        // description="Item description"
-        description={currency+item.unitPrice}
-        left={props => <List.Icon color={Colors.grey600} size={28} icon="shopping" />}
-        right={props =>   <IconButton
-                            icon="delete"
-                            color={Colors.red700}
-                            size={28}
-                            onPress={() => {
-                              console.log(item.id)
-                              deleteProduct(item.id)}}
-                          />
-                          }
-        style={{
-          borderBottomColor: 'grey',
-          borderBottomWidth: 0.3,
-        }}
-        onPress={()=>{
-          console.log("test")
-
-          }}
-      />
-  );
 
   return (
     <View>
       <Appbar.Header>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
-        <Appbar.Content title="Products" />
+        <Appbar.Content title={data.name==null?"Product Detail":data.name} />
 
       </Appbar.Header>
 
+      <View style={{flexDirection:"row"}}>
 
-      <FlatList
-        keyExtractor={this.keyExtractor}
-        data={data}
-        renderItem={this.renderItem}
-      />
+      <View>
+      <Text>Product Name: </Text>
+      </View>
+
+      <View>
+      <Text>Demre</Text>
+      </View>
+
+      </View>
 
     </View>
   );
