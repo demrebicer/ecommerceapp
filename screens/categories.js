@@ -14,11 +14,12 @@ import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
 import { Appbar,List,Colors,Divider,IconButton } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-
-
+import HomeScreen from '../App';
+import { useNavigation } from '@react-navigation/native';
 
 
 function CategoriesPage({ navigation }) {
+  const nav = useNavigation(); 
   const [data, setdata] = useState([]);
   function deleteCategory(id) {
     const newList = data.filter((data) => data.id !== id);
@@ -69,7 +70,7 @@ function CategoriesPage({ navigation }) {
       <Appbar.Header>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Categories" />
-        <Appbar.Action icon="plus-box" onPress={console.log()} />
+        <Appbar.Action icon="plus-box"  onPress={() => nav.navigate('addCategoryPage')}/>
       </Appbar.Header>
 
 

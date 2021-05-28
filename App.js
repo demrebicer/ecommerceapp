@@ -22,7 +22,7 @@ import CategoriesPage from './screens/categories'
 import ordersPage from './screens/orders'
 import productDetail from './screens/productDetail'
 import addCategoryPage from './screens/addCategory'
-
+import { useNavigation } from '@react-navigation/native';
 import { BottomNavigation, Text, Appbar } from 'react-native-paper';
 
 const _goBack = () => console.log('Went back');
@@ -56,8 +56,45 @@ const MyComponent = () => {
   );
 };
 
-export default MyComponent;
+const Stack = createStackNavigator();
 
+function HomeScreen(navigation) {
+  const nav = useNavigation(); 
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+     <Button title="Go back" onPress={() => nav.goBack()} />
+      <Text>Home Screen</Text>
+    </View>
+  );
+}
+
+function MyStack() {
+
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{headerShown: false, animationEnabled: false}}
+        name="Updates"
+        component={MyComponent}
+      />
+ <Stack.Screen
+        options={{headerShown: false, animationEnabled: false}}
+        name="addCategoryPage"
+        component={addCategoryPage}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export default function App() {
+
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
