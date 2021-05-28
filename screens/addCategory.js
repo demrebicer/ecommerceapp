@@ -32,6 +32,19 @@ function addCategoriesPage({ navigation }) {
   }
 
   useEffect(() => {
+
+    if (data.length == 0) {
+      axios
+        .get('https://northwind.vercel.app/api/categories')
+        .then((response) => {
+          setdata(response.data);
+          console.log(response.data, 'aaaa');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
   });
 
   
@@ -67,6 +80,16 @@ function addCategoriesPage({ navigation }) {
         console.log("dasda")
         Alert.alert("Attention","Please fill the blanks")
       }
+
+      let params;
+        params = new URLSearchParams();
+        params.append('id', parseInt(data[data.length-1].id)+1);
+        params.append('name', categoryname);
+        params.append('description', categorydetail);
+        axios.post('https://northwind.vercel.app/api/categories',params).then((response) => {
+        nav.goBack();
+        })
+      
     }}>
     Add a new Category
     </Button>

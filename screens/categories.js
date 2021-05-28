@@ -28,7 +28,6 @@ function CategoriesPage({ navigation }) {
   }
 
   useEffect(() => {
-    if (data.length == 0) {
       axios
         .get('https://northwind.vercel.app/api/categories')
         .then((response) => {
@@ -38,7 +37,6 @@ function CategoriesPage({ navigation }) {
         .catch((error) => {
           console.log(error);
         });
-    }
   });
 
   keyExtractor = (item, index) => index.toString();
