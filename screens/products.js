@@ -17,11 +17,11 @@ import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ProductDetailPage from './productDetail';
 import HomeScreen from '../App';
-
+import {themes} from '../App';
 import { userContext } from '../contexts/userContext';
 
 function ProductPage({ navigation }) {
-  const ctx = useContext(userContext);
+  const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
   const nav = useNavigation();
 
@@ -90,7 +90,19 @@ function ProductPage({ navigation }) {
   return (
     <View style={{ backgroundColor: ctx.background }}>
       <Appbar.Header style={{ backgroundColor: ctx.primary }}>
-        <Appbar.Action icon="theme-light-dark" color={ctx.buttonPrimary} onPress={() => {}} />
+        <Appbar.Action icon="theme-light-dark" color={ctx.buttonPrimary} onPress={() => {
+
+if (ctx.background==themes.dark.background)
+{
+setctx(themes.light);
+
+}
+else{
+
+  setctx(themes.dark);
+}
+
+        }} />
         <Appbar.Content title="Products" />
       </Appbar.Header>
 

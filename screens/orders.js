@@ -21,11 +21,11 @@ import {
   DataTable,
 } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-
+import {themes} from '../App';
 import { userContext } from '../contexts/userContext';
 
 function ordersPage({ navigation }) {
-  const ctx = useContext(userContext);
+  const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
   const [data, setdata] = useState([]);
   function deleteProduct(id) {

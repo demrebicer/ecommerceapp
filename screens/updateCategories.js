@@ -26,9 +26,9 @@ import { StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import { userContext } from '../contexts/userContext';
-
+import {themes} from '../App';
 function UpdateCategoryPage({ route, navigation }) {
-  const ctx = useContext(userContext);
+  const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
   const nav = useNavigation();
   const [data, setdata] = useState([]);

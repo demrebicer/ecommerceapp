@@ -16,11 +16,11 @@ import { Appbar, List, Colors, Divider, IconButton } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import HomeScreen from '../App';
 import { useNavigation } from '@react-navigation/native';
-
+import {themes} from '../App';
 import { userContext } from '../contexts/userContext';
 
 function CategoriesPage({ navigation }) {
-  const ctx = useContext(userContext);
+  const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
   const nav = useNavigation();
   const [data, setdata] = useState([]);

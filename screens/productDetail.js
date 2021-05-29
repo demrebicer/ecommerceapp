@@ -23,9 +23,9 @@ import {
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { userContext } from '../contexts/userContext';
-
+import {themes} from '../App';
 function ProductDetailPage({ route, navigation }) {
-  const ctx = useContext(userContext);
+  const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
   const nav = useNavigation();
   const [data, setdata] = useState([]);

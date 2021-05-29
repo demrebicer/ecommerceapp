@@ -34,7 +34,7 @@ const _handleSearch = () => console.log('Searching');
 const _handleMore = () => console.log('Shown more');
 
 const MyComponent = () => {
-  const ctx = useContext(userContext);
+  const [ctx, setctx] = useContext(userContext);
   console.log("ctx:",ctx)
 
   const [index, setIndex] = React.useState(0);
@@ -60,21 +60,11 @@ const MyComponent = () => {
   );
 };
 
-const ColorMode="light"
 
-function colorMode(){
-  if(ColorMode=="light"){
-    return themes.dark
-  }
-  else{
-    themes.light
-  }
-  
-  };
 
 const Stack = createStackNavigator();
 
-const themes: Themes = {
+export const themes: Themes = {
   light: {
     primary: '#590ce4',
     secondary: '#ffffff',
@@ -83,7 +73,7 @@ const themes: Themes = {
     icon: '#757575',
     listitem: '#f6f6f6',
     buttonDanger: '#c23e39',
-    buttonPrimary: '#3874cc',
+    buttonPrimary: '#ffffff',
     background: '#f6f6f6',
   },
   dark: {
@@ -141,8 +131,9 @@ function MyStack() {
 }
 
 export default function App() {
+  const [ctx, setctx] = useState(themes.dark);
   return (
-    <userContext.Provider value={themes.dark}>
+    <userContext.Provider value={[ctx, setctx]}>
       <NavigationContainer>
         <MyStack />
       </NavigationContainer>
