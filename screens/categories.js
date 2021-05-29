@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import {
   View,
   Button,
@@ -16,8 +16,10 @@ import { Appbar, List, Colors, Divider, IconButton } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import HomeScreen from '../App';
 import { useNavigation } from '@react-navigation/native';
-
+import {userContext} from '../contexts/userContext';
 function CategoriesPage({ navigation }) {
+  const ctx = useContext(userContext);
+  console.log("ctx:",ctx)
   const nav = useNavigation();
   const [data, setdata] = useState([]);
   function deleteCategory(id) {
@@ -110,7 +112,7 @@ function CategoriesPage({ navigation }) {
 
   return (
     <View>
-      <Appbar.Header>
+      <Appbar.Header style={{backgroundColor:ctx.background}}>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Categories" />
         <Appbar.Action

@@ -14,6 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
+import {userContext} from './contexts/userContext';
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 //PAGES
@@ -82,7 +83,7 @@ const themes: Themes = {
   },
 };
 
-const ThemeContext = React.createContext(themes.light);
+
 
 function HomeScreen(navigation) {
   const nav = useNavigation();
@@ -125,11 +126,11 @@ function MyStack() {
 
 export default function App() {
   return (
-    <ThemeContext.Provider value={themes.dark}>
+    <userContext.Provider value={themes.dark}>
       <NavigationContainer>
         <MyStack />
       </NavigationContainer>
-    </ThemeContext.Provider>
+    </userContext.Provider>
   );
 }
 const styles = StyleSheet.create({
