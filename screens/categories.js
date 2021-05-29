@@ -116,7 +116,7 @@ function CategoriesPage({ navigation }) {
   );
 
   return (
-    <View style={{ backgroundColor: ctx.background }}>
+    <View style={{ backgroundColor: ctx.background,}}>
       <Appbar.Header style={{ backgroundColor: ctx.primary }}>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Categories" />
@@ -125,10 +125,21 @@ function CategoriesPage({ navigation }) {
           color={ctx.buttonPrimary}
           onPress={() => nav.navigate('addCategoryPage')}
         />
+                <Appbar.Action
+          icon="theme-light-dark"
+          color={ctx.buttonPrimary}
+          onPress={() => {
+            if (ctx.background == themes.dark.background) {
+              setctx(themes.light);
+            } else {
+              setctx(themes.dark);
+            }
+          }}
+        />
       </Appbar.Header>
 
       <FlatList
-        style={{ marginBottom: 100 ,backgroundColor: ctx.primary}}
+        style={{ paddingBottom: 300 ,backgroundColor: ctx.background}}
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}

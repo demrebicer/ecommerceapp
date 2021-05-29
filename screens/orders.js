@@ -90,6 +90,17 @@ function ordersPage({ navigation }) {
       <Appbar.Header style={{ backgroundColor: ctx.primary }}>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Orders" />
+                <Appbar.Action
+          icon="theme-light-dark"
+          color={ctx.buttonPrimary}
+          onPress={() => {
+            if (ctx.background == themes.dark.background) {
+              setctx(themes.light);
+            } else {
+              setctx(themes.dark);
+            }
+          }}
+        />
       </Appbar.Header>
 
       <DataTable.Header style={{ flexDirection: 'row' }}>

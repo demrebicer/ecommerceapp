@@ -26,7 +26,7 @@ import { StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import { userContext } from '../contexts/userContext';
-import {themes} from '../App';
+import { themes } from '../App';
 function UpdateCategoryPage({ route, navigation }) {
   const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
@@ -66,6 +66,17 @@ function UpdateCategoryPage({ route, navigation }) {
           }}
         />
         <Appbar.Content title="Update a Category" />
+        <Appbar.Action
+          icon="theme-light-dark"
+          color={ctx.buttonPrimary}
+          onPress={() => {
+            if (ctx.background == themes.dark.background) {
+              setctx(themes.light);
+            } else {
+              setctx(themes.dark);
+            }
+          }}
+        />
       </Appbar.Header>
 
       <TextInput
@@ -85,7 +96,8 @@ function UpdateCategoryPage({ route, navigation }) {
             text: ctx.text,
             primary: ctx.text,
             underlineColor: 'transparent',
-            background: ctx.primary,
+            background:
+              ctx.background == themes.dark.background ? ctx.primary : 'white',
           },
         }}
         outlineColor={Colors.purple400}
@@ -107,7 +119,8 @@ function UpdateCategoryPage({ route, navigation }) {
             text: ctx.text,
             primary: ctx.text,
             underlineColor: 'transparent',
-            background: ctx.primary,
+            background:
+              ctx.background == themes.dark.background ? ctx.primary : 'white',
           },
         }}
         outlineColor={Colors.purple400}

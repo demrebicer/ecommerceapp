@@ -46,6 +46,17 @@ function ProductDetailPage({ route, navigation }) {
           }}
         />
         <Appbar.Content title={route.params.product.name} />
+                <Appbar.Action
+          icon="theme-light-dark"
+          color={ctx.buttonPrimary}
+          onPress={() => {
+            if (ctx.background == themes.dark.background) {
+              setctx(themes.light);
+            } else {
+              setctx(themes.dark);
+            }
+          }}
+        />
       </Appbar.Header>
 
       <View style={{ flexDirection: 'column' }}>

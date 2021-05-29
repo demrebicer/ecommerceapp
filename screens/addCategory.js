@@ -26,7 +26,7 @@ import { StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import { userContext } from '../contexts/userContext';
-import {themes} from '../App';
+import { themes } from '../App';
 function addCategoriesPage({ navigation }) {
   const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
@@ -56,7 +56,7 @@ function addCategoriesPage({ navigation }) {
   });
 
   return (
-    <View style={{ backgroundColor: ctx.background, paddingBottom:1000 }}>
+    <View style={{ backgroundColor: ctx.background, paddingBottom: 1000 }}>
       <Appbar.Header style={{ backgroundColor: ctx.primary }}>
         <Appbar.BackAction
           onPress={() => {
@@ -64,6 +64,17 @@ function addCategoriesPage({ navigation }) {
           }}
         />
         <Appbar.Content title="Add a new Category" />
+        <Appbar.Action
+          icon="theme-light-dark"
+          color={ctx.buttonPrimary}
+          onPress={() => {
+            if (ctx.background == themes.dark.background) {
+              setctx(themes.light);
+            } else {
+              setctx(themes.dark);
+            }
+          }}
+        />
       </Appbar.Header>
 
       <TextInput
@@ -83,7 +94,8 @@ function addCategoriesPage({ navigation }) {
             text: ctx.text,
             primary: ctx.text,
             underlineColor: 'transparent',
-            background: ctx.primary,
+            background:
+              ctx.background == themes.dark.background ? ctx.primary : 'white',
           },
         }}
         outlineColor={Colors.purple400}
@@ -99,11 +111,12 @@ function addCategoriesPage({ navigation }) {
         }}
         theme={{
           colors: {
-            placeholder: 'white',
-            text: 'white',
-            primary: 'white',
+            placeholder: ctx.text,
+            text: ctx.text,
+            primary: ctx.text,
             underlineColor: 'transparent',
-            background: ctx.primary,
+            background:
+              ctx.background == themes.dark.background ? ctx.primary : 'white',
           },
         }}
         outlineColor={Colors.purple400}
