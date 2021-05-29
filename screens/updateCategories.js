@@ -23,7 +23,7 @@ function UpdateCategoryPage({ route,navigation }) {
   const nav = useNavigation(); 
   const [data, setdata] = useState([]);
   const [categoryname, setcategoryname] = React.useState(route.params.name);
-  const [categorydetail, setcategorydetail] = React.useState(route.params.detail);
+  const [categorydetail, setcategorydetail] = React.useState(route.params.desc);
   function deleteCategory(id) {
     const newList = data.filter((data) => data.id !== id);
 
@@ -82,10 +82,10 @@ function UpdateCategoryPage({ route,navigation }) {
 
       let params;
         params = new URLSearchParams();
-        params.append('id', parseInt(data[data.length-1].id)+1);
+        params.append('id', parseInt(route.params.id) );
         params.append('name', categoryname);
         params.append('description', categorydetail);
-        axios.put('https://northwind.vercel.app/api/categories',params).then((response) => {
+        axios.put('https://northwind.vercel.app/api/categories/'+route.params.id,params).then((response) => {
         nav.goBack();
         })
       
