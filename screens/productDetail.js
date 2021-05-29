@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     width: 0.1,
     backgroundColor: '#909090',flex:0.01
   },
-  leftText:{flex:1,textAlign: 'space-between',fontWeight: 'bold'}
-  ,
-  rightText:{flex:1,textAlign: 'center'},
+  leftText:{flex:1,textAlign: 'space-between',fontWeight: 'bold',padding:15},
+  rightText:{flex:1,textAlign: 'center',padding:15},
 });
