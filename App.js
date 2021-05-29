@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -34,9 +34,12 @@ const _handleSearch = () => console.log('Searching');
 const _handleMore = () => console.log('Shown more');
 
 const MyComponent = () => {
+  const ctx = useContext(userContext);
+  console.log("ctx:",ctx)
+
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'products', title: 'Products', icon: 'cart' },
+    { key: 'products', title: 'Products', icon: 'cart'},
     { key: 'categories', title: 'Categories', icon: 'folder' },
     { key: 'orders', title: 'Orders', icon: 'history' },
   ]);
@@ -52,9 +55,22 @@ const MyComponent = () => {
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
+      barStyle={{ backgroundColor: ctx.primary }}
     />
   );
 };
+
+const ColorMode="light"
+
+function colorMode(){
+  if(ColorMode=="light"){
+    return themes.dark
+  }
+  else{
+    themes.light
+  }
+  
+  };
 
 const Stack = createStackNavigator();
 
@@ -71,7 +87,7 @@ const themes: Themes = {
     background: '#f6f6f6',
   },
   dark: {
-    primary: '#590ce4',
+    primary: '#1f1f1f',
     secondary: '#be88ff',
     text: '#e3e3e3',
     textSecondary: '#939393',

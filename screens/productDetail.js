@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   Text,
@@ -7,54 +6,330 @@ import {
   FlatList,
   Button,
   TouchableOpacity,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 // import { ListItem, Avatar } from 'react-native-elements';
-import { Appbar,List,Colors,Divider,IconButton,DataTable } from 'react-native-paper';
+import {
+  Appbar,
+  List,
+  Colors,
+  Divider,
+  IconButton,
+  DataTable,
+} from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { userContext } from '../contexts/userContext';
 
-function ProductDetailPage({ route,navigation}) {
-
-    const nav = useNavigation(); 
+function ProductDetailPage({ route, navigation }) {
+  const ctx = useContext(userContext);
+  console.log('ctx:', ctx);
+  const nav = useNavigation();
   const [data, setdata] = useState([]);
-  const currency=" $";
+  const currency = ' $';
   function deleteProduct(id) {
     const newList = data.filter((data) => data.id !== id);
 
     setdata(newList);
   }
 
-
-
   return (
-    <View>
-      <Appbar.Header>
+    <View style={{ backgroundColor: ctx.background, paddingBottom: 1000 }}>
+      <Appbar.Header style={{ backgroundColor: ctx.primary }}>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
-              <Appbar.BackAction onPress={() => {nav.goBack()}} />
+        <Appbar.BackAction
+          onPress={() => {
+            nav.goBack();
+          }}
+        />
         <Appbar.Content title={route.params.product.name} />
-
       </Appbar.Header>
 
-      <View style={{flexDirection:"column"}}>
- 
-      <View style={styles.rowView}><Text style={styles.leftText}>ID: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText}>{route.params.product.id}</Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Supplier ID: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText}>{route.params.product.supplierId} </Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Category ID: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText}>{route.params.product.categoryId} </Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Quantity Per Unit: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText}>{route.params.product.quantityPerUnit}</Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Unit Price: </Text><View style={styles.verticleLine}></View><Text style={   styles.rightText  }>{route.params.product.unitPrice} </Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Units In Stock: </Text><View style={styles.verticleLine}></View><Text style={ styles.rightText }>{route.params.product.unitsInStock} </Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Units On Order: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText }>{route.params.product.unitsOnOrder}</Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Reorder Level: </Text><View style={styles.verticleLine}></View><Text style={ styles.rightText }>{route.params.product.reorderLevel} </Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Discontinued: </Text><View style={styles.verticleLine}></View><Text style={ styles.rightText }>{route.params.product.discontinued.toString()}</Text></View>
-      <View style={styles.rowView}><Text style={styles.leftText}>Name: </Text><View style={styles.verticleLine}></View><Text style={   styles.rightText }>{route.params.product.name} </Text></View>
-
-
+      <View style={{ flexDirection: 'column' }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            ID:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.id}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Supplier ID:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.supplierId}{' '}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Category ID:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.categoryId}{' '}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Quantity Per Unit:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.quantityPerUnit}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Unit Price:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.unitPrice}{' '}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Units In Stock:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.unitsInStock}{' '}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Units On Order:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.unitsOnOrder}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Reorder Level:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.reorderLevel}{' '}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Discontinued:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.discontinued.toString()}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            borderBottomWidth: 0.2,
+            borderColor: ctx.text,
+            padding: 10,
+          }}>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'space-between',
+              fontWeight: 'bold',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            Name:{' '}
+          </Text>
+          <View style={styles.verticleLine}></View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              padding: 15,
+              color: ctx.text,
+            }}>
+            {route.params.product.name}{' '}
+          </Text>
+        </View>
       </View>
-
     </View>
   );
 }
@@ -68,14 +343,11 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  rowView:{
 
-    flexDirection:"row",borderWidth: 0.2,padding:10
-  }, verticleLine:{
+  verticleLine: {
     height: '100%',
     width: 0.1,
-    backgroundColor: '#909090',flex:0.01
+    backgroundColor: '#909090',
+    flex: 0.01,
   },
-  leftText:{flex:1,textAlign: 'space-between',fontWeight: 'bold',padding:15},
-  rightText:{flex:1,textAlign: 'center',padding:15},
 });

@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   Button,
@@ -7,24 +6,27 @@ import {
   Animated,
   FlatList,
   TouchableOpacity,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 // import { ListItem, Avatar } from 'react-native-elements';
-import { Appbar,List,Colors,Divider,IconButton } from 'react-native-paper';
+import { Appbar, List, Colors, Divider, IconButton } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ProductDetailPage from './productDetail';
 import HomeScreen from '../App';
 
+import { userContext } from '../contexts/userContext';
 
 function ProductPage({ navigation }) {
-    const nav = useNavigation(); 
+  const ctx = useContext(userContext);
+  console.log('ctx:', ctx);
+  const nav = useNavigation();
 
   const [data, setdata] = useState([]);
-  const currency=" $";
+  const currency = ' $';
   function deleteProduct(id) {
     const newList = data.filter((data) => data.id !== id);
 
@@ -32,7 +34,6 @@ function ProductPage({ navigation }) {
   }
 
   useEffect(() => {
-    
     if (data.length == 0) {
       axios
         .get('https://northwind.vercel.app/api/products')
@@ -49,49 +50,56 @@ function ProductPage({ navigation }) {
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => (
-      <List.Item
-        title={item.name}
-        // description="Item description"
-        description={"Price: " + currency+item.unitPrice + "\n" + "Avaible Stock: " +item.unitsInStock}
-        left={props => <List.Icon color={Colors.grey600} size={28} icon="shopping" />}
-        right={props =>   <IconButton
-                            icon="delete"
-                            color={Colors.red700}
-                            size={28}
-                            onPress={() => {
-                              console.log(item.id)
-                              deleteProduct(item.id)}}
-                          />
-                          }
-        style={{
-          borderBottomColor: 'grey',
-          borderBottomWidth: 0.3,
-          
-        }}
-        onPress={()=>{
-         console.log("bastın");
-         nav.navigate('productDetailPage',{'product':item})
-
+    <List.Item
+      title={item.name}
+      // description="Item description"
+      description={
+        'Price: ' +
+        currency +
+        item.unitPrice +
+        '\n' +
+        'Avaible Stock: ' +
+        item.unitsInStock
+      }
+      left={(props) => <List.Icon color={ctx.icon} size={28} icon="shopping" />}
+      right={(props) => (
+        <IconButton
+          icon="delete"
+          color={Colors.red700}
+          size={28}
+          onPress={() => {
+            console.log(item.id);
+            deleteProduct(item.id);
           }}
-      />
+        />
+      )}
+      style={{
+        borderBottomColor: 'grey',
+        borderBottomWidth: 0.3,
+        backgroundColor: ctx.background,
+      }}
+      titleStyle={{ color: ctx.text }}
+      descriptionStyle={{ color: ctx.textSecondary }}
+      onPress={() => {
+        console.log('bastın');
+        nav.navigate('productDetailPage', { product: item });
+      }}
+    />
   );
-  
 
   return (
-    <View>
-      <Appbar.Header>
-        {/* <Appbar.BackAction onPress={_goBack} /> */}
+    <View style={{ backgroundColor: ctx.background }}>
+      <Appbar.Header style={{ backgroundColor: ctx.primary }}>
+        <Appbar.Action icon="theme-light-dark" color={ctx.buttonPrimary} onPress={() => {}} />
         <Appbar.Content title="Products" />
-
       </Appbar.Header>
 
-
-      <FlatList style={{marginBottom:100}}
+      <FlatList
+        style={{ marginBottom: 100 }}
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
       />
-
     </View>
   );
 }
@@ -106,4 +114,3 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 });
-
