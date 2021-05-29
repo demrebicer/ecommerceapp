@@ -41,16 +41,16 @@ function ProductDetailPage({ route,navigation}) {
 
       <View style={{flexDirection:"column"}}>
  
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>id: </Text><Text style={             {flex:1}}>{route.params.product.id}</Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>supplierId: </Text><Text style={{     flex:1}}>{route.params.product.supplierId} </Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>categoryId: </Text><Text style={{     flex:1}}>{route.params.product.categoryId} </Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>quantityPerUnit: </Text><Text style={{flex:1}}>{route.params.product.quantityPerUnit}</Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>unitPrice: </Text><Text style={{      flex:1}}>{route.params.product.unitPrice} </Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>unitsInStock: </Text><Text style={{   flex:1}}>{route.params.product.unitsInStock} </Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>unitsOnOrder: </Text><Text style={{   flex:1}}>{route.params.product.unitsOnOrder}</Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>reorderLevel: </Text><Text style={{   flex:1}}>{route.params.product.reorderLevel} </Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>discontinued: </Text><Text style={{   flex:1}}>{route.params.product.discontinued}</Text></View>
-      <View style={{flexDirection:"row"}}><Text style={{flex:1}}>name: </Text><Text style={{           flex:1}}>{route.params.product.name} </Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>ID: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText}>{route.params.product.id}</Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Supplier ID: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText}>{route.params.product.supplierId} </Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Category ID: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText}>{route.params.product.categoryId} </Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Quantity Per Unit: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText}>{route.params.product.quantityPerUnit}</Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Unit Price: </Text><View style={styles.verticleLine}></View><Text style={   styles.rightText  }>{route.params.product.unitPrice} </Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Units In Stock: </Text><View style={styles.verticleLine}></View><Text style={ styles.rightText }>{route.params.product.unitsInStock} </Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Units On Order: </Text><View style={styles.verticleLine}></View><Text style={styles.rightText }>{route.params.product.unitsOnOrder}</Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Reorder Level: </Text><View style={styles.verticleLine}></View><Text style={ styles.rightText }>{route.params.product.reorderLevel} </Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Discontinued: </Text><View style={styles.verticleLine}></View><Text style={ styles.rightText }>{route.params.product.discontinued.toString()}</Text></View>
+      <View style={styles.rowView}><Text style={styles.leftText}>Name: </Text><View style={styles.verticleLine}></View><Text style={   styles.rightText }>{route.params.product.name} </Text></View>
 
 
       </View>
@@ -68,4 +68,15 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
+  rowView:{
+
+    flexDirection:"row",borderWidth: 0.2,padding:10
+  }, verticleLine:{
+    height: '100%',
+    width: 0.1,
+    backgroundColor: '#909090',flex:0.01
+  },
+  leftText:{flex:1,textAlign: 'space-between',fontWeight: 'bold'}
+  ,
+  rightText:{flex:1,textAlign: 'center'},
 });
