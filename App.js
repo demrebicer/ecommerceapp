@@ -17,11 +17,12 @@ import { ListItem, Avatar } from 'react-native-elements';
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 //PAGES
-import productsPage from './screens/products'
-import CategoriesPage from './screens/categories'
-import ordersPage from './screens/orders'
-import productDetailPage from './screens/productDetail'
-import addCategoryPage from './screens/addCategory'
+import productsPage from './screens/products';
+import CategoriesPage from './screens/categories';
+import ordersPage from './screens/orders';
+import productDetailPage from './screens/productDetail';
+import addCategoryPage from './screens/addCategory';
+import updateCategoryPage from './screens/updateCategories';
 import { useNavigation } from '@react-navigation/native';
 import { BottomNavigation, Text, Appbar } from 'react-native-paper';
 
@@ -39,7 +40,6 @@ const MyComponent = () => {
     { key: 'orders', title: 'Orders', icon: 'history' },
   ]);
 
-
   const renderScene = BottomNavigation.SceneMap({
     products: productsPage,
     categories: CategoriesPage,
@@ -52,50 +52,51 @@ const MyComponent = () => {
       onIndexChange={setIndex}
       renderScene={renderScene}
     />
-
   );
 };
 
 const Stack = createStackNavigator();
 
 function HomeScreen(navigation) {
-  const nav = useNavigation(); 
+  const nav = useNavigation();
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-     <Button title="Go back" onPress={() => nav.goBack()} />
+      <Button title="Go back" onPress={() => nav.goBack()} />
       <Text>Home Screen</Text>
     </View>
   );
 }
 
 function MyStack() {
-
-
   return (
     <Stack.Navigator>
       <Stack.Screen
-        options={{headerShown: false, animationEnabled: false}}
+        options={{ headerShown: false, animationEnabled: false }}
         name="Updates"
         component={MyComponent}
       />
-      
       <Stack.Screen
-        options={{headerShown: false, animationEnabled: false}}
+        options={{ headerShown: false, animationEnabled: false }}
+        name="updateCategoryPage"
+        component={updateCategoryPage}
+        initialParams={{ "name":"","desc":"" }}
+      />
+      <Stack.Screen
+        options={{ headerShown: false, animationEnabled: false }}
         name="addCategoryPage"
         component={addCategoryPage}
       />
-       <Stack.Screen
-        options={{headerShown: false, animationEnabled: false}}
+      <Stack.Screen
+        options={{ headerShown: false, animationEnabled: false }}
         name="productDetailPage"
         component={productDetailPage}
-        initialParams={{'product':{}}}
+        initialParams={{ product: {} }}
       />
     </Stack.Navigator>
   );
 }
 
 export default function App() {
-
   return (
     <NavigationContainer>
       <MyStack />
