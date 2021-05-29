@@ -24,9 +24,6 @@ function UpdateCategoryPage({ route,navigation }) {
   const [data, setdata] = useState([]);
   const [categoryname, setcategoryname] = React.useState(route.params.name);
   const [categorydetail, setcategorydetail] = React.useState(route.params.desc);
-
-  const firstName=route.params.name;
-  const firstDetail=route.params.desc;
   function deleteCategory(id) {
     const newList = data.filter((data) => data.id !== id);
 
@@ -78,16 +75,12 @@ function UpdateCategoryPage({ route,navigation }) {
       outlineColor={Colors.purple400}
     />
     <Button icon="update" mode="contained" style={{marginLeft:90,marginRight:90,marginTop:30,marginBottom:15}} onPress={() => {
-      console.log("eski", firstName,"yeni",categoryname)
       if(categoryname==""||categorydetail==""){
+        console.log("dasda")
         Alert.alert("Attention","Please fill the blanks")
       }
-      if(categoryname==firstName && categorydetail==firstDetail)
-      {
-        Alert.alert("Attention","You didn't change anything.")
-      }
-      else{
-              let params;
+
+      let params;
         params = new URLSearchParams();
         params.append('id', parseInt(route.params.id) );
         params.append('name', categoryname);
@@ -95,8 +88,6 @@ function UpdateCategoryPage({ route,navigation }) {
         axios.put('https://northwind.vercel.app/api/categories/'+route.params.id,params).then((response) => {
         nav.goBack();
         })
-      }
-
       
     }}>
     Update Category

@@ -57,6 +57,33 @@ const MyComponent = () => {
 
 const Stack = createStackNavigator();
 
+const themes: Themes = {
+  light: {
+    primary: '#590ce4',
+    secondary: '#ffffff',
+    text: '#202020',
+    textSecondary: '#717171',
+    icon: '#757575',
+    listitem: '#f6f6f6',
+    buttonDanger: '#c23e39',
+    buttonPrimary: '#3874cc',
+    background: '#f6f6f6',
+  },
+  dark: {
+    primary: '#590ce4',
+    secondary: '#be88ff',
+    text: '#e3e3e3',
+    textSecondary: '#939393',
+    icon: '#c38fff',
+    listitem: '#1d1d1d',
+    buttonDanger: '#c23e39',
+    buttonPrimary: '#03dac6',
+    background: '#121212',
+  },
+};
+
+const ThemeContext = React.createContext(themes.light);
+
 function HomeScreen(navigation) {
   const nav = useNavigation();
   return (
@@ -79,7 +106,7 @@ function MyStack() {
         options={{ headerShown: false, animationEnabled: false }}
         name="updateCategoryPage"
         component={updateCategoryPage}
-        initialParams={{ "name":"","desc":"" }}
+        initialParams={{ name: '', desc: '' }}
       />
       <Stack.Screen
         options={{ headerShown: false, animationEnabled: false }}
@@ -98,9 +125,11 @@ function MyStack() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <ThemeContext.Provider value={themes.dark}>
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </ThemeContext.Provider>
   );
 }
 const styles = StyleSheet.create({
