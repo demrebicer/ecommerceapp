@@ -69,15 +69,30 @@ function CategoriesPage({ navigation }) {
         <List.Icon color={Colors.grey600} size={28} icon="folder" />
       )}
       right={(props) => (
+        <View style={{flexDirection:"row"}}>
         <IconButton
           icon="delete"
           color={Colors.red700}
           size={28}
+          style={{marginLeft:10}}
           onPress={() => {
             console.log(item.id);
             deleteCategory(item.id);
           }}
         />
+          <IconButton
+          icon="lead-pencil"
+          color={Colors.blue700}
+          size={28}
+          onPress={() => {
+            nav.navigate('updateCategoryPage', {
+              name: item.name.value == null ? item.name : item.name.value,
+              desc: item.description,
+              id: item.id,
+            });
+          }}
+        />
+        </View>
       )}
       style={{
         borderBottomColor: 'grey',
