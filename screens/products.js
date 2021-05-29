@@ -19,6 +19,7 @@ import { useNavigation } from '@react-navigation/native';
 import ProductDetailPage from './productDetail';
 import HomeScreen from '../App';
 
+
 function ProductPage({ navigation }) {
     const nav = useNavigation(); 
 
@@ -51,7 +52,7 @@ function ProductPage({ navigation }) {
       <List.Item
         title={item.name}
         // description="Item description"
-        description={currency+item.unitPrice}
+        description={"Price: " + currency+item.unitPrice + "\n" + "Avaible Stock: " +item.unitsInStock}
         left={props => <List.Icon color={Colors.grey600} size={28} icon="shopping" />}
         right={props =>   <IconButton
                             icon="delete"
@@ -65,6 +66,7 @@ function ProductPage({ navigation }) {
         style={{
           borderBottomColor: 'grey',
           borderBottomWidth: 0.3,
+          
         }}
         onPress={()=>{
          console.log("bastın");
@@ -73,6 +75,7 @@ function ProductPage({ navigation }) {
           }}
       />
   );
+  
 
   return (
     <View>
