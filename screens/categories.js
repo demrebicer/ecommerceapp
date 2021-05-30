@@ -6,7 +6,7 @@ import {
   Animated,
   FlatList,
   TouchableOpacity,
-  SafeAreaView,
+  SafeAreaView,ScrollView
 } from 'react-native';
 import { NavigationContainer,useIsFocused } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
