@@ -136,13 +136,14 @@ function CategoriesPage({ navigation }) {
           }}
         />
       </Appbar.Header>
-
+      <ScrollView>
       <FlatList
         style={{ paddingBottom: 800 ,backgroundColor: ctx.background}}
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
       />
+      </ScrollView>
     </View>
   );
 }
