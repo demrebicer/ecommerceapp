@@ -29,7 +29,6 @@ import { userContext } from '../contexts/userContext';
 import { themes } from '../App';
 function UpdateCategoryPage({ route, navigation }) {
   const [ctx, setctx] = useContext(userContext);
-  console.log('ctx:', ctx);
   const nav = useNavigation();
   const [data, setdata] = useState([]);
   const [categoryname, setcategoryname] = React.useState(route.params.name);
@@ -39,23 +38,6 @@ function UpdateCategoryPage({ route, navigation }) {
 
     setdata(newList);
   }
-
-  // useEffect(() => {
-
-  //   // console.log("hüloo",route.params.name)
-  //   // if (data.length == 0) {
-  //   //   axios
-  //   //     .get('https://northwind.vercel.app/api/categories')
-  //   //     .then((response) => {
-  //   //       setdata(response.data);
-  //   //       console.log(response.data, 'aaaa');
-  //   //     })
-  //   //     .catch((error) => {
-  //   //       console.log(error);
-  //   //     });
-  //   // }
-
-  // });
 
   return (
     <View style={{ backgroundColor: ctx.background, paddingBottom: 1000 }}>
@@ -136,7 +118,6 @@ function UpdateCategoryPage({ route, navigation }) {
         }}
         onPress={() => {
           if (categoryname == '' || categorydetail == '') {
-            console.log('dasda');
             Alert.alert('Attention', 'Please fill the blanks');
           }
 

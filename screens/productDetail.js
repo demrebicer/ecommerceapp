@@ -6,7 +6,8 @@ import {
   FlatList,
   Button,
   TouchableOpacity,
-  SafeAreaView,ScrollView
+  SafeAreaView,
+  ScrollView,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -26,10 +27,8 @@ import { userContext } from '../contexts/userContext';
 import { themes } from '../App';
 function ProductDetailPage({ route, navigation }) {
   const [ctx, setctx] = useContext(userContext);
-  console.log('ctx:', ctx);
   const nav = useNavigation();
   const [data, setdata] = useState([]);
-  const currency = ' $';
   function deleteProduct(id) {
     const newList = data.filter((data) => data.id !== id);
 
@@ -59,7 +58,12 @@ function ProductDetailPage({ route, navigation }) {
         />
       </Appbar.Header>
 
-      <ScrollView style={{ flexDirection: 'column',backgroundColor: ctx.background,paddingBottom:800 }}>
+      <ScrollView
+        style={{
+          flexDirection: 'column',
+          backgroundColor: ctx.background,
+          paddingBottom: 800,
+        }}>
         <View
           style={{
             flexDirection: 'row',

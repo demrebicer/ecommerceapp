@@ -21,9 +21,7 @@ import { userContext } from '../contexts/userContext';
 
 function CategoriesPage({ navigation }) {
   const isFocused = useIsFocused();
-  console.log("focusss",isFocused);
   const [ctx, setctx] = useContext(userContext);
-  console.log('ctx:', ctx);
   const nav = useNavigation();
   const [data, setdata] = useState([]);
   function deleteCategory(id) {
@@ -53,14 +51,12 @@ function CategoriesPage({ navigation }) {
               }
               dt.push(temp);
             } catch (Exc) {
-              console.log('hatalı');
               continue;
             }
           }
           setdata(dt);
         })
         .catch((error) => {
-          console.log(error);
         });
     }
   },[isFocused]);
@@ -83,7 +79,6 @@ function CategoriesPage({ navigation }) {
             size={28}
             style={{ marginLeft: 10 }}
             onPress={() => {
-              console.log(item.id);
               deleteCategory(item.id);
             }}
           />

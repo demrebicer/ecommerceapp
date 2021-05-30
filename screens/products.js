@@ -22,7 +22,6 @@ import { userContext } from '../contexts/userContext';
 
 function ProductPage({ navigation }) {
   const [ctx, setctx] = useContext(userContext);
-  console.log('ctx:', ctx);
   const nav = useNavigation();
 
   const [data, setdata] = useState([]);
@@ -39,11 +38,8 @@ function ProductPage({ navigation }) {
         .get('https://northwind.vercel.app/api/products')
         .then((response) => {
           setdata(response.data);
-          console.log(data, 'aaaa');
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
     }
   });
 
@@ -68,7 +64,6 @@ function ProductPage({ navigation }) {
           color={Colors.red700}
           size={28}
           onPress={() => {
-            console.log(item.id);
             deleteProduct(item.id);
           }}
         />
@@ -81,7 +76,6 @@ function ProductPage({ navigation }) {
       titleStyle={{ color: ctx.text }}
       descriptionStyle={{ color: ctx.textSecondary }}
       onPress={() => {
-        console.log('bastın');
         nav.navigate('productDetailPage', { product: item });
       }}
     />

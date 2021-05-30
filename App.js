@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -14,10 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
-import {userContext} from './contexts/userContext';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-//PAGES
+import { userContext } from './contexts/userContext';
 import productsPage from './screens/products';
 import CategoriesPage from './screens/categories';
 import ordersPage from './screens/orders';
@@ -27,19 +24,11 @@ import updateCategoryPage from './screens/updateCategories';
 import { useNavigation } from '@react-navigation/native';
 import { BottomNavigation, Text, Appbar } from 'react-native-paper';
 
-const _goBack = () => console.log('Went back');
-
-const _handleSearch = () => console.log('Searching');
-
-const _handleMore = () => console.log('Shown more');
-
 const MyComponent = () => {
   const [ctx, setctx] = useContext(userContext);
-  console.log("ctx:",ctx)
-
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'products', title: 'Products', icon: 'cart'},
+    { key: 'products', title: 'Products', icon: 'cart' },
     { key: 'categories', title: 'Categories', icon: 'folder' },
     { key: 'orders', title: 'Orders', icon: 'history' },
   ]);
@@ -59,8 +48,6 @@ const MyComponent = () => {
     />
   );
 };
-
-
 
 const Stack = createStackNavigator();
 
@@ -88,8 +75,6 @@ export const themes: Themes = {
     background: '#121212',
   },
 };
-
-
 
 function HomeScreen(navigation) {
   const nav = useNavigation();

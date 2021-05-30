@@ -26,7 +26,6 @@ import { userContext } from '../contexts/userContext';
 
 function ordersPage({ navigation }) {
   const [ctx, setctx] = useContext(userContext);
-  console.log('ctx:', ctx);
   const [data, setdata] = useState([]);
   function deleteProduct(id) {
     const newList = data.filter((data) => data.id !== id);
@@ -40,10 +39,8 @@ function ordersPage({ navigation }) {
         .get('https://northwind.vercel.app/api/orders')
         .then((response) => {
           setdata(response.data);
-          console.log(response.data, 'orders');
         })
         .catch((error) => {
-          console.log(error);
         });
     }
   });
@@ -51,22 +48,6 @@ function ordersPage({ navigation }) {
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => (
-    // <ListItem bottomDivider>
-    //   <ListItem.Content style={{ flexDirection: 'row' }}>
-    //     <Text style={{ flex: 4 }}>{item.shipName}</Text>
-    //     <Text style={{ flex: 4 }}>{item.orderDate}</Text>
-    //      <Text style={{ flex: 4 }}>{item.id}</Text>
-    //       <Text style={{ flex: 4 }}>{item.customerId}</Text>
-    //     <TouchableOpacity
-    //       style={{ flex: 1, backgroundColor: 'red' }}
-    //       onPress={() => {
-    //         console.log('item.id');
-    //         deleteProduct(item.id);
-    //       }}>
-    //       <Text>SİL</Text>
-    //     </TouchableOpacity>
-    //   </ListItem.Content>
-    // </ListItem>
 
     <DataTable.Row style={{ flexDirection: 'row' }}>
       <DataTable.Cell style={{ flex: 3, justifyContent: 'left' }}>
@@ -88,7 +69,6 @@ function ordersPage({ navigation }) {
   return (
     <View style={{ backgroundColor: ctx.background }}>
       <Appbar.Header style={{ backgroundColor: ctx.primary }}>
-        {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Orders" />
                 <Appbar.Action
           icon="theme-light-dark"
