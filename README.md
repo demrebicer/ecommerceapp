@@ -1,9 +1,13 @@
 # COP4461 Project
 
-Demre Biçer - 1731016
+## Contributors
 
-Aybars Göçerler - 1730142
-
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/demrebicer"><img src="https://avatars.githubusercontent.com/u/15638956?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Demre Biçer</b></sub></a><br /><sub><b>1731016</b></sub>
+</td>
+    <td align="center"><a href="https://github.com/aybarsgocerler"><img src="https://avatars.githubusercontent.com/u/48893880?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aybars Göçerler</b></sub></a><br /><sub><b>1730142</b></sub></td>
+</table>
 
 ## Features
 
