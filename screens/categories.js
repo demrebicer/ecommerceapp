@@ -6,9 +6,10 @@ import {
   Animated,
   FlatList,
   TouchableOpacity,
-  SafeAreaView,ScrollView
+  SafeAreaView,
+  ScrollView,
 } from 'react-native';
-import { NavigationContainer,useIsFocused } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
@@ -16,7 +17,7 @@ import { Appbar, List, Colors, Divider, IconButton } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import HomeScreen from '../App';
 import { useNavigation } from '@react-navigation/native';
-import {themes} from '../App';
+import { themes } from '../App';
 import { userContext } from '../contexts/userContext';
 
 function CategoriesPage({ navigation }) {
@@ -31,8 +32,7 @@ function CategoriesPage({ navigation }) {
   }
 
   useEffect(() => {
-    
-    if (data.length == 0 || isFocused==true) {
+    if (data.length == 0 || isFocused == true) {
       axios
         .get('https://northwind.vercel.app/api/categories')
         .then((response) => {
@@ -56,10 +56,9 @@ function CategoriesPage({ navigation }) {
           }
           setdata(dt);
         })
-        .catch((error) => {
-        });
+        .catch((error) => {});
     }
-  },[isFocused]);
+  }, [isFocused]);
 
   keyExtractor = (item, index) => index.toString();
 
@@ -68,9 +67,7 @@ function CategoriesPage({ navigation }) {
       title={item.name.value == null ? item.name : item.name.value}
       // description="Item description"
       description={item.description}
-      left={(props) => (
-        <List.Icon color={ctx.icon} size={28} icon="folder" />
-      )}
+      left={(props) => <List.Icon color={ctx.icon} size={28} icon="folder" />}
       right={(props) => (
         <View style={{ flexDirection: 'row' }}>
           <IconButton
@@ -87,7 +84,6 @@ function CategoriesPage({ navigation }) {
             color={Colors.blue700}
             size={28}
             onPress={() => {
-     
               nav.navigate('updateCategoryPage', {
                 name: item.name.value == null ? item.name : item.name.value,
                 desc: item.description,
@@ -115,7 +111,7 @@ function CategoriesPage({ navigation }) {
   );
 
   return (
-    <View style={{ backgroundColor: ctx.background,}}>
+    <View style={{ backgroundColor: ctx.background }}>
       <Appbar.Header style={{ backgroundColor: ctx.primary }}>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.Content title="Categories" />
@@ -124,7 +120,7 @@ function CategoriesPage({ navigation }) {
           color={ctx.buttonPrimary}
           onPress={() => nav.navigate('addCategoryPage')}
         />
-                <Appbar.Action
+        <Appbar.Action
           icon="theme-light-dark"
           color={ctx.buttonPrimary}
           onPress={() => {
@@ -136,13 +132,13 @@ function CategoriesPage({ navigation }) {
           }}
         />
       </Appbar.Header>
-      <ScrollView style={{paddingBottom:300}}>
-      <FlatList
-        style={{backgroundColor: ctx.background}}
-        keyExtractor={this.keyExtractor}
-        data={data}
-        renderItem={this.renderItem}
-      />
+      <ScrollView style={{ paddingBottom: 300 }}>
+        <FlatList
+          style={{ backgroundColor: ctx.background, marginBottom: 100 }}
+          keyExtractor={this.keyExtractor}
+          data={data}
+          renderItem={this.renderItem}
+        />
       </ScrollView>
     </View>
   );
