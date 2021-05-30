@@ -6,7 +6,7 @@ import {
   FlatList,
   Button,
   TouchableOpacity,
-  SafeAreaView,
+  SafeAreaView,ScrollView
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -23,7 +23,7 @@ import {
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { userContext } from '../contexts/userContext';
-import {themes} from '../App';
+import { themes } from '../App';
 function ProductDetailPage({ route, navigation }) {
   const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
@@ -37,7 +37,7 @@ function ProductDetailPage({ route, navigation }) {
   }
 
   return (
-    <View style={{ backgroundColor: ctx.background, paddingBottom: 1000 }}>
+    <View style={{ backgroundColor: ctx.background }}>
       <Appbar.Header style={{ backgroundColor: ctx.primary }}>
         {/* <Appbar.BackAction onPress={_goBack} /> */}
         <Appbar.BackAction
@@ -46,7 +46,7 @@ function ProductDetailPage({ route, navigation }) {
           }}
         />
         <Appbar.Content title={route.params.product.name} />
-                <Appbar.Action
+        <Appbar.Action
           icon="theme-light-dark"
           color={ctx.buttonPrimary}
           onPress={() => {
@@ -59,7 +59,7 @@ function ProductDetailPage({ route, navigation }) {
         />
       </Appbar.Header>
 
-      <View style={{ flexDirection: 'column' }}>
+      <ScrollView style={{ flexDirection: 'column',backgroundColor: ctx.background,paddingBottom:800 }}>
         <View
           style={{
             flexDirection: 'row',
@@ -340,7 +340,7 @@ function ProductDetailPage({ route, navigation }) {
             {route.params.product.name}{' '}
           </Text>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
