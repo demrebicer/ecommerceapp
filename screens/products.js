@@ -58,7 +58,7 @@ function ProductPage({ navigation }) {
         currency +
         item.unitPrice +
         '\n' +
-        'Avaible Stock: ' +
+        'Available Stock: ' +
         item.unitsInStock
       }
       left={(props) => <List.Icon color={ctx.icon} size={28} icon="shopping" />}
