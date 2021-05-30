@@ -151,7 +151,7 @@ function UpdateCategoryPage({ route, navigation }) {
               params
             )
             .then((response) => {
-              nav.goBack();
+              nav.navigate("Updates",{"routes":"categories"}, );
             });
         }}>
         Update Category

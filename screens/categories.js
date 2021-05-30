@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer,useIsFocused } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios';
 import { ListItem, Avatar } from 'react-native-elements';
@@ -20,6 +20,8 @@ import {themes} from '../App';
 import { userContext } from '../contexts/userContext';
 
 function CategoriesPage({ navigation }) {
+  const isFocused = useIsFocused();
+  console.log("focusss",isFocused);
   const [ctx, setctx] = useContext(userContext);
   console.log('ctx:', ctx);
   const nav = useNavigation();
@@ -31,7 +33,8 @@ function CategoriesPage({ navigation }) {
   }
 
   useEffect(() => {
-    if (data.length == 0) {
+    
+    if (data.length == 0 || isFocused==true) {
       axios
         .get('https://northwind.vercel.app/api/categories')
         .then((response) => {
@@ -60,7 +63,7 @@ function CategoriesPage({ navigation }) {
           console.log(error);
         });
     }
-  });
+  },[isFocused]);
 
   keyExtractor = (item, index) => index.toString();
 
@@ -89,6 +92,7 @@ function CategoriesPage({ navigation }) {
             color={Colors.blue700}
             size={28}
             onPress={() => {
+     
               nav.navigate('updateCategoryPage', {
                 name: item.name.value == null ? item.name : item.name.value,
                 desc: item.description,
@@ -139,7 +143,7 @@ function CategoriesPage({ navigation }) {
       </Appbar.Header>
 
       <FlatList
-        style={{ paddingBottom: 300 ,backgroundColor: ctx.background}}
+        style={{ paddingBottom: 800 ,backgroundColor: ctx.background}}
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={this.renderItem}
