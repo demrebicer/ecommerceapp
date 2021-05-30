@@ -39,6 +39,19 @@ function addCategoriesPage({ navigation }) {
 
     setdata(newList);
   }
+  useEffect(() => {
+    if (data.length == 0) {
+      axios
+        .get('https://northwind.vercel.app/api/categories')
+        .then((response) => {
+          setdata(response.data);
+          console.log(response.data, 'aaaa');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  });
 
   return (
     <View style={{ backgroundColor: ctx.background, paddingBottom: 1000 }}>
